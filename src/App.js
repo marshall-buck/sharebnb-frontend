@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import useLocalStorage from "./hooks/useLocalStorage";
-// import NavBar from "./routes-nav/NavBar";
+import NavBar from "./routes-nav/NavBar";
 import RoutesList from "./routes-nav/RoutesList";
 // import LoadingSpinner from "./common/LoadingSpinner";
 import ShareBnB from "./api/api";
@@ -58,14 +58,14 @@ function App() {
 
 
   /** Handles site-wide logout. */
-  // function logout() {
-  //   // setApplicationIds(new Set([]));
-  //   setCurrentUser({
-  //     infoLoaded: true,
-  //     data: null
-  //   });
-  //   setToken(null);
-  // }
+  function logout() {
+    // setApplicationIds(new Set([]));
+    setCurrentUser({
+      infoLoaded: true,
+      data: null
+    });
+    setToken(null);
+  }
 
   /** Handles site-wide signup.
    *
@@ -85,8 +85,20 @@ function App() {
    * Make sure you await this function to see if any error happens.
    */
   async function login(loginData) {
+    console.log(loginData);
     let token = await ShareBnB.login(loginData);
     setToken(token);
+  }
+
+  async function createProperty(formData) {
+    let property = await ShareBnB.createProperty(formData);
+    return property;
+
+  }
+
+  async function uploadImages(formData) {
+    const property = await ShareBnB.uploadImages(formData);
+    return property;
   }
 
 
@@ -100,8 +112,11 @@ function App() {
       }}
     >
       <div className="App">
+
         <BrowserRouter>
-          <RoutesList currentUser={currentUser.data} login={login} signup={signup} />
+          <NavBar logout={logout} />
+          <RoutesList currentUser={currentUser.data} login={login}
+            signup={signup} createProperty={createProperty} uploadImages={uploadImages} />
         </BrowserRouter>
 
       </div>

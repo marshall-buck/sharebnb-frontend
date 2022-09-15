@@ -19,9 +19,7 @@ class ShareBnB {
 
     const url = `${BASE_URL}/${endpoint}`;
     const headers = { Authorization: `Bearer ${ShareBnB.token}` };
-    const params = (method === "get")
-      ? data
-      : {};
+    const params = method === "get" ? data : {};
 
     try {
       return (await axios({ url, method, data, params, headers })).data;
@@ -37,7 +35,7 @@ class ShareBnB {
   /** Get token for login from username, password. */
 
   static async login(data) {
-    let res = await this.request(`auth/token`, data, "post");
+    let res = await this.request(`auth/login`, data, "post");
     return res.token;
   }
 
@@ -48,6 +46,8 @@ class ShareBnB {
     return res.token;
   }
 
+
+
   /** Get the current user. */
 
   static async getCurrentUser(username) {
@@ -55,42 +55,53 @@ class ShareBnB {
     return res.user;
   }
 
-  /** Get companies (filtered by name if not undefined) */
+  /** Create property
+   * formData- { title, address, description ,price }
+   *
+   * returns
+   * -{id, title, address, description ,price, owner_username }
+   *
+   */
 
-  static async getCompanies(name) {
-    let res = await this.request("companies", { name });
-    return res.companies;
+  static async createProperty(formData) {
+    let res = await this.request("properties", formData, "post");
+    return res.property;
   }
 
-  /** Get details on a company by handle. */
+  /**  Handles post request with content-type  "multipart/form-data" */
+  static async upload(endpoint, data, method = "post") {
+    console.debug("API Call:", endpoint, data, method);
 
-  static async getCompany(handle) {
-    let res = await this.request(`companies/${handle}`);
-    return res.company;
+    const url = `${BASE_URL}/${endpoint}`;
+    const headers = {
+      Authorization: `Bearer ${ShareBnB.token}`,
+      "Content-Type": "multipart/form-data"
+    };
+
+    // const params = method === "get" ? data : {};
+
+    try {
+      return (await axios({ url, method, data, headers })).data;
+    } catch (err) {
+      console.error("API Error:", err.response);
+      let message = err.response.data.error.message;
+      throw Array.isArray(message) ? message : [message];
+    }
   }
 
-  /** Get list of jobs (filtered by title if not undefined) */
+  /** formData
+   * - {files, propertyId}
+   * - returns  property:
+   *    { id, title, address, description ,price, owner_username, images }
+   *  where images is [{key, property_id}, ...]
+   */
 
-  static async getJobs(title) {
-    let res = await this.request("jobs", { title });
-    return res.jobs;
+  static async uploadImages(formData) {
+    console.log(formData);
+    let res = await this.upload(`properties/images`, formData);
+    return res.property;
   }
 
-  /** Apply to a job */
-
-  static async applyToJob(username, id) {
-    await this.request(`users/${username}/jobs/${id}`, {}, "post");
-  }
-
-
-
-  /** Save user profile page. */
-
-  static async saveProfile(username, data) {
-    let res = await this.request(`users/${username}`, data, "patch");
-    return res.user;
-  }
 }
-
 
 export default ShareBnB;

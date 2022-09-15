@@ -38,8 +38,9 @@ function SignupForm({ signup }) {
    */
   async function handleSubmit(evt) {
     evt.preventDefault();
+    console.log(evt.target);
     try {
-      await signup(formData);
+      await signup(formData.file);
       // navigate("/companies");
     } catch (err) {
       setFormErrors(err);

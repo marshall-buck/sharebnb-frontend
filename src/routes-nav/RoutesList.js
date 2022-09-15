@@ -1,10 +1,9 @@
-
 import { Routes, Route } from "react-router-dom";
-
-
-// import LoginForm from "../auth/LoginForm";
-
 import SignupForm from "../auth/SignupForm";
+import LoginForm from "../auth/LoginForm";
+
+
+import CreatePropertyForm from "../properties/CreatePropertyForm";
 
 
 
@@ -12,21 +11,21 @@ import SignupForm from "../auth/SignupForm";
  *
  * Parts of site should only be visitable when logged in.
  *
- * Visiting a non-existant route navigates to the homepage.
+ * Visiting a non-existent route navigates to the homepage.
  */
 
-function RoutesList({ login, signup, currentUser }) {
-  // console.debug(
-  //   "Routes",
-  //   `login=${typeof login}`,
-  //   `register=${typeof register}`,
-  // );
+function RoutesList({ login, signup, currentUser, uploadImages, createProperty }) {
+
 
   return (
     <div className="pt-5">
       <Routes>
 
         <Route path="/signup" element={<SignupForm signup={signup} />} />
+        <Route path="/login" element={<LoginForm login={login} />} />
+
+        <Route path="/properties/add" element={<CreatePropertyForm
+          createProperty={createProperty} uploadImages={uploadImages} />} />
 
       </Routes>
     </div>
