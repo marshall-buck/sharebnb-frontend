@@ -1,11 +1,11 @@
 import { NavLink } from "react-router-dom";
-import { Card, CardBody, CardTitle, CardText, CardSubtitle, Button } from "reactstrap";
+import { Card, CardBody, CardTitle, CardSubtitle } from "reactstrap";
 
 /** Property Card component
- * renders details about a propertyerty
+ * renders details about a property, link to property details page
  *
  * Props:
- * - property {id, title, address, description, ownerUsername, key}
+ * - property: {id, title, address, description, ownerUsername, key}
  *
  * State:
  * - none
@@ -14,8 +14,10 @@ import { Card, CardBody, CardTitle, CardText, CardSubtitle, Button } from "react
  */
 
 function PropertyCard({ property }) {
+
   const { id, title, address, key } = property;
   let imgSrc = key ? key : "../no-photo.jpeg";
+
   return (
     <NavLink to={`/properties/${id}`} >
       <Card
