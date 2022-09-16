@@ -28,6 +28,7 @@ function MessageList() {
 
 
   // TODO: change name of effect
+  /* calls api to get messages sent and received */
   useEffect(function fetchPropertiesList() {
     async function fetchMessages() {
       const sentRes = await ShareBnB.getMsgsSent(currentUser.username);
