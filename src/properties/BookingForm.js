@@ -29,7 +29,7 @@ function BookingForm({ propertyId }) {
   /** handles booking submit */
   async function handleSubmit(evt) {
     evt.preventDefault();
-
+    setSaveConfirmed(false);
     setFormErrors([]);
     try {
 
