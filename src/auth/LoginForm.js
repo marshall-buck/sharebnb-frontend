@@ -63,7 +63,7 @@ function LoginForm({ login }) {
     <Container >
       <Row>
         <Col
-          className="bg-white bg-opacity-50 border rounded"
+          className="bg-white bg-opacity-50 border rounded shadow-sm"
           md={{ offset: 3, size: 6 }}
           sm="12">
           <Form
@@ -94,7 +94,7 @@ function LoginForm({ login }) {
             {formErrors.length
               ? <Alert type="danger" messages={formErrors} />
               : null}
-            <Button color="primary">Submit</Button>
+            <Button className="mb-2" color="primary">Submit</Button>
           </Form>
         </Col>
       </Row>

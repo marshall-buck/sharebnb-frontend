@@ -135,12 +135,12 @@ function App() {
 
   return (
     <div className="App"
-    // style={{
+    style={{
     //   backgroundImage: `url("background.jpg")`,
     //   backgroundSize: "cover",
     //   backgroundRepeat: "repeat-y",
     //   height: "100vh"
-    // }}
+    }}
     >
       <UserContext.Provider
         value={{

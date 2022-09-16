@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { Card, CardBody, CardTitle, CardSubtitle } from "reactstrap";
+import "./PropertyCard.css";
 
 /** Property Card component
  * renders details about a property, link to property details page
@@ -21,8 +22,14 @@ function PropertyCard({ property }) {
   return (
     <NavLink to={`/properties/${id}`} >
       <Card
-        className="mb-4"
-        style={{ width: '18rem', height: '16rem', border: '0px', backgroundColor: 'lightgrey' }}
+        className="Card mb-4"
+        style={{
+          width: '18rem',
+          height: '16rem',
+          border: '0px',
+          backgroundColor: 'rgba(0,0,0,.1)',
+          color: 'black',
+        }}
       >
         <div style={{
           width: '18rem', height: '150px', backgroundImage: `url(${imgSrc})`,
@@ -39,7 +46,7 @@ function PropertyCard({ property }) {
         /> */}
         <CardBody>
           <CardTitle tag="h5">{title}</CardTitle>
-          <CardSubtitle>{address}</CardSubtitle>
+          <CardSubtitle style={{color: 'grey'}}>{address}</CardSubtitle>
         </CardBody>
       </Card>
     </NavLink>

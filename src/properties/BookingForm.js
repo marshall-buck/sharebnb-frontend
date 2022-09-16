@@ -49,9 +49,9 @@ function BookingForm({ propertyId }) {
     <Form onSubmit={handleSubmit}>
       <legend>Book this property</legend>
       <FormGroup> <Label>Start Date</Label>
-        <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} /></FormGroup>
+        <DatePicker className="form-control" selected={startDate} onChange={(date) => setStartDate(date)} /></FormGroup>
       <FormGroup> <Label>End Date</Label>
-        <DatePicker selected={endDate} onChange={(date) => setEndDate(date)} /></FormGroup>
+        <DatePicker className="form-control" selected={endDate} onChange={(date) => setEndDate(date)} /></FormGroup>
 
       {formErrors.length
         ? <Alert type="danger" messages={formErrors} />
@@ -60,7 +60,7 @@ function BookingForm({ propertyId }) {
         ?
         <Alert type="success" messages={["Property Booked!"]} />
         : null}
-      <Button>Book Dates</Button>
+      <Button color="primary">Book Dates</Button>
     </Form>
 
   );

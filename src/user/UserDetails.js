@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Container, Row, Button } from "reactstrap";
+import { Container, Card, CardTitle, CardBody } from "reactstrap";
 import UserContext from "../auth/UserContext";
 
 
@@ -15,21 +15,16 @@ function UserDetails() {
   const { currentUser } = useContext(UserContext);
 
   return (
-    <Container style={{
-      textAlign: 'center',
-      backgroundColor: 'rgba(0,0,0,.1)',
-      color: 'rgba(0,0,0,.6)',
-      width: '100vw',
-      height: '100vh',
-    }}>
-      <Row style={{ margin: '20px' }}>
-        <h2> Hello {currentUser.firstName} {currentUser.lastName}</h2>
+    <Container >
+      <Card className="shadow-sm" style={{ margin: '20px', padding: "2rem" }}>
+        <CardTitle tag="h2">{currentUser.firstName} {currentUser.lastName}</CardTitle>
+        <CardBody>
         <p> username: {currentUser.username}</p>
-        <p> Email: {currentUser.email}</p>
-        <p> Phone: {currentUser.phone}</p>
-      </Row>
+        <p> email: {currentUser.email}</p>
+        <p> phone: {currentUser.phone}</p>
+        </CardBody>
+      </Card>
     </Container>
-
   );
 }
 export default UserDetails;

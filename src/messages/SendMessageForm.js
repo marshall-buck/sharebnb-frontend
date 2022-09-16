@@ -7,9 +7,6 @@ import {
   FormGroup,
   Label,
   Input,
-  Container,
-  Row,
-  Col,
   Button,
 } from "reactstrap";
 
@@ -56,52 +53,41 @@ function SendMessageForm({ sendMsg, toUsername }) {
   }
 
   return (
-    <div>
-      <Container>
-        <Row>
-          <Col
-            className="bg-white bg-opacity-50 border rounded"
-            md={{ offset: 3, size: 6 }}
-            sm="12"
-          >
-            <Form onSubmit={handleSubmit} style={{ padding: "0.5rem" }}>
-              <legend>Send Message</legend>
+    <Form onSubmit={handleSubmit} style={{ padding: "0.5rem" }}>
+      <legend>Send Message</legend>
 
-              <FormGroup>
-                <Label for="toUsername">To:</Label>
-                <Input
-                  id="toUsername"
-                  name="toUsername"
-                  value={formData.toUsername}
-                  onChange={handleChange}
-                  required
-                />
+      <FormGroup>
+        <Label for="toUsername">To:</Label>
+        <Input
+          id="toUsername"
+          name="toUsername"
+          value={formData.toUsername}
+          onChange={handleChange}
+          required
+        />
 
-                <Label for="body">Message Body:</Label>
-                <Input
-                  id="body"
-                  name="body"
-                  value={formData.body}
-                  onChange={handleChange}
-                  type="textarea"
-                  required
-                />
+        <Label for="body">Message Body:</Label>
+        <Input
+          id="body"
+          name="body"
+          value={formData.body}
+          onChange={handleChange}
+          type="textarea"
+          required
+        />
 
-              </FormGroup>
+      </FormGroup>
 
-              {formErrors.length
-                ? <Alert type="danger" messages={formErrors} />
-                : null}
-              {saveConfirmed
-                ?
-                <Alert type="success" messages={["Message sent!"]} />
-                : null}
-              <Button color="primary">Send Message</Button>
-            </Form>
-          </Col>
-        </Row>
-      </Container>
-    </div>
+      {formErrors.length
+        ? <Alert type="danger" messages={formErrors} />
+        : null}
+      {saveConfirmed
+        ?
+        <Alert type="success" messages={["Message sent!"]} />
+        : null}
+      <Button color="primary">Send Message</Button>
+    </Form>
+
   );
 }
 

@@ -10,6 +10,7 @@ import {
 } from 'reactstrap';
 import { NavLink } from "react-router-dom";
 import 'bootstrap/dist/js/bootstrap.bundle';
+import './NavBar.css';
 
 
 /** NavBar Component, responsive toggle
@@ -40,14 +41,12 @@ function NavBar({ logout }) {
         <NavItem>
           <NavLink to="/properties">Properties for Rent</NavLink>
         </NavItem>&nbsp;&nbsp;&nbsp;
+
         <NavItem>
           <NavLink to="/properties/add">List a Property</NavLink>
         </NavItem>&nbsp;&nbsp;&nbsp;
-        <NavItem>
-          <NavLink to="/profile">Profile</NavLink>
-        </NavItem>&nbsp;&nbsp;&nbsp;
-        <NavItem>
 
+        <NavItem>
           <NavLink to="/messages">Inbox</NavLink>
           <Badge style={{ marginLeft: '.25rem' }}
             color="danger"
@@ -55,9 +54,12 @@ function NavBar({ logout }) {
           >
             5
           </Badge>
-
-
         </NavItem>&nbsp;&nbsp;&nbsp;
+
+        <NavItem>
+          <NavLink to="/profile">Profile</NavLink>
+        </NavItem>&nbsp;&nbsp;&nbsp;
+
         <NavItem>
           <NavLink to="/logout" onClick={logout}>
             Logout {currentUser.username}
@@ -101,15 +103,3 @@ function NavBar({ logout }) {
 }
 
 export default NavBar;
-
-
-
-{/* <NavItem>
-  <NavLink to="/snacks">Snacks</NavLink>
-  <Badge
-    color="primary"
-    pill
-  >
-    {count.snacks}
-  </Badge>
-</NavItem>; */}
