@@ -16,6 +16,13 @@ import MessageList from "../messages/MessageList";
  * Parts of site should only be visitable when logged in.
  *
  * Visiting a non-existent route navigates to the homepage.
+ * Props:
+ * -currentUser
+ * - login fn()
+ * - createProperty fn()
+ * - uploadImages fn()
+ * - sendMsg fn()
+ *
  */
 
 function RoutesList({
@@ -38,7 +45,7 @@ function RoutesList({
               createProperty={createProperty}
               uploadImages={uploadImages} />}
             />
-            <Route path="/properties/:id" element={<PropertyDetails sendMsg={sendMsg}/>} />
+            <Route path="/properties/:id" element={<PropertyDetails sendMsg={sendMsg} />} />
             <Route path="/profile" element={<UserDetails />} />
             <Route path="/messages/" element={<MessageList />} />
             <Route path="/messages/send" element={<SendMessageForm

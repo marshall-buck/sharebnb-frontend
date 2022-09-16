@@ -14,25 +14,32 @@ import {
   Button,
 } from "reactstrap";
 
-/** Form to create a Property
+/** Form to create a Property, opens ImageSubmitForm on success
+ *
  * Props
- * - createProperty
- * -uploadImages
+ * - createProperty fn()
+ * -uploadImages()
+ *
  * State
- * -formData
- *   {title, address, description ,price}
+ * -formData: {title, address, description ,price}
+ * -formErrors: array of formErrors
+ * -property: {id, title, address, description, price, ownerUsername}
+ *
+ * App -> RouteList -> CreatePropertyForm -> (ImageUploadForm, Alert)
  */
 
 function CreatePropertyForm({ createProperty, uploadImages }) {
+
   const [formData, setFormData] = useState({
     title: "",
     address: "",
     description: "",
     price: "",
   });
- 
+
   const [formErrors, setFormErrors] = useState([]);
   const [property, setProperty] = useState(null);
+
 
   /** Update form data field */
   function handleChange(evt) {
@@ -41,10 +48,7 @@ function CreatePropertyForm({ createProperty, uploadImages }) {
     setFormErrors([]);
   }
 
-  /** Handle form submit:
-   *
-   * Calls login func prop and, if not successful, sets errors.
-   */
+  /** Handle form submit: opens ImageSubmitForm on success */
   async function handleSubmit(evt) {
     evt.preventDefault();
 
@@ -74,6 +78,7 @@ function CreatePropertyForm({ createProperty, uploadImages }) {
               <Form onSubmit={handleSubmit} style={{ padding: "0.5rem" }}>
                 <legend>List Property</legend>
 
+                {/* TITLE */}
                 <FormGroup>
                   <Label for="title">Listing Title</Label>
                   <Input
@@ -84,6 +89,7 @@ function CreatePropertyForm({ createProperty, uploadImages }) {
                     required
                   />
 
+                  {/* ADDRESS */}
                   <Label for="address">Address:</Label>
                   <Input
                     id="address"
@@ -93,6 +99,7 @@ function CreatePropertyForm({ createProperty, uploadImages }) {
                     required
                   />
 
+                  {/* DESCRIPTION */}
                   <Label for="description">Description:</Label>
                   <Input
                     id="description"
@@ -103,6 +110,7 @@ function CreatePropertyForm({ createProperty, uploadImages }) {
                     required
                   />
 
+                  {/* PRICE */}
                   <Label for="price">Price per day:</Label>
                   <Input
                     id="price"
