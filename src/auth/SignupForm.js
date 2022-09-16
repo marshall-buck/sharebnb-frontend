@@ -4,7 +4,7 @@ import { Form, FormGroup, Label, Input, FormText, Button, Card, CardBody, } from
 // import "./SignupForm.css";
 // import { useNavigate } from "react-router-dom";
 // TODO: put back alert
-// TODO: redirect on success
+
 
 
 
@@ -48,8 +48,7 @@ function SignupForm({ signup }) {
     evt.preventDefault();
     console.log(evt.target);
     try {
-      await signup(formData.file);
-      // navigate("/companies");
+      await signup(formData);
     } catch (err) {
       setFormErrors(err);
     }
