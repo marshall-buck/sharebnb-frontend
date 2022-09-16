@@ -82,7 +82,7 @@ function NavBar({ logout }) {
 
   return (
     <div>
-      <Navbar className="NavBar" bg="light" expand="md" color="white">
+      <Navbar className="NavBar shadow-sm" bg="light" expand="md" color="white">
         <NavbarBrand href="/">Share BnB</NavbarBrand>
         <NavbarToggler onClick={toggle} aria-controls="basic-navbar-nav" />
         <Collapse isOpen={isOpen} navbar>
