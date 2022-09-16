@@ -144,7 +144,8 @@ function App() {
     >
       <UserContext.Provider
         value={{
-          currentUser: currentUser.data
+          currentUser: currentUser.data,
+
         }}
       >
         <BrowserRouter>

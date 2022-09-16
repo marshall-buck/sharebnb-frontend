@@ -19,12 +19,17 @@ import MessageCard from './MessageCard';
 
 function MessageList() {
 
+
+
   const { currentUser } = useContext(UserContext);
+
   const [messages, setMessages] = useState({
     sent: [],
     received: [],
     isLoading: true
   });
+
+
 
 
   /* calls api to get messages sent and received */
@@ -37,6 +42,8 @@ function MessageList() {
         received: receivedRes,
         isLoading: false
       });
+
+
     }
     fetchMessages();
 

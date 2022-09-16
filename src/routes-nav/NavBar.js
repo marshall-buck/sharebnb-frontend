@@ -6,7 +6,7 @@ import {
   NavbarToggler,
   NavbarBrand,
   Nav,
-  NavItem,
+  NavItem, Badge
 } from 'reactstrap';
 import { NavLink } from "react-router-dom";
 import 'bootstrap/dist/js/bootstrap.bundle';
@@ -47,7 +47,16 @@ function NavBar({ logout }) {
           <NavLink to="/profile">Profile</NavLink>
         </NavItem>&nbsp;&nbsp;&nbsp;
         <NavItem>
+
           <NavLink to="/messages">Inbox</NavLink>
+          <Badge style={{ marginLeft: '.25rem' }}
+            color="danger"
+            pill
+          >
+            5
+          </Badge>
+
+
         </NavItem>&nbsp;&nbsp;&nbsp;
         <NavItem>
           <NavLink to="/logout" onClick={logout}>
@@ -92,3 +101,15 @@ function NavBar({ logout }) {
 }
 
 export default NavBar;
+
+
+
+{/* <NavItem>
+  <NavLink to="/snacks">Snacks</NavLink>
+  <Badge
+    color="primary"
+    pill
+  >
+    {count.snacks}
+  </Badge>
+</NavItem>; */}
