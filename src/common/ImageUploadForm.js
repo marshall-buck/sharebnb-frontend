@@ -5,13 +5,18 @@ import Alert from "./Alert";
 import { Form, FormGroup, Label, Input, FormText, Button } from "reactstrap";
 import { Navigate } from "react-router-dom";
 
-/** Form to upload images
- * Prop
- * - property
+/** Form to upload images, redirects to property details page o success
+ *
+ * Prop:
+ * - property {id, title, description, price, images, ownerUsername}
  * - uploadImages function
- * State
- * file to upload
-*/
+ *
+ * State:
+ * - file to upload
+ * - formErrors: array
+ *
+ * CreatePropertyForm -> ImageUploadForm -> Alert
+ */
 
 function ImageUploadForm({ property, uploadImages }) {
   const [formErrors, setFormErrors] = useState([]);
@@ -25,16 +30,13 @@ function ImageUploadForm({ property, uploadImages }) {
 
   }
 
-  /** Handle form submit:
- *
- * Calls login func prop and, if not successful, sets errors.
- */
+  /** Handles form submit, and redirect  */
   async function handleSubmit(evt) {
     evt.preventDefault();
     try {
       await uploadImages({ photos: file, id: property.id });
       setFile(null);
-      Navigate(`/properties/${property.id}`)
+      Navigate(`/properties/${property.id}`);
     } catch (err) {
       setFormErrors(err);
       return;
