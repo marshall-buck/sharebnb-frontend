@@ -3,10 +3,16 @@ import { useContext } from "react";
 import { Button } from "reactstrap";
 import { Link } from "react-router-dom";
 
-/** Home */
+/** Home  page for app
+ *
+ *Context: currentUser*
+ *
+ * App -> RouteList -> Homepage
+*/
 function Homepage() {
+
   const { currentUser } = useContext(UserContext);
-  console.debug("Homepage", "currentUser=", currentUser);
+
   return (
     <div
       style={{

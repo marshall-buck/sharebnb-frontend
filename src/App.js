@@ -12,6 +12,25 @@ import decode from "jwt-decode";
 // Key name for storing token in localStorage for "remember me" re-login
 export const TOKEN_STORAGE_ID = "sharebnb-token";
 
+/** ShareBnb App
+ *
+ *
+ * Context:
+ * -currentUser.data: {userName, firstName, lastName, emailAddress}
+ *
+ * State:
+ *   - currentUser: user obj from API. This becomes the canonical way to tell
+ *   if someone is logged in. This is passed around via context throughout app,
+ *   infoLoaded: has user data been pulled from API?
+ *
+ * - token: for logged in users, this is their authentication JWT.
+ *   Is required to be set for most API calls. This is initially read from
+ *   localStorage and synced to there via the useLocalStorage hook.
+ *
+ *
+ *
+ */
+
 function App() {
   const [currentUser, setCurrentUser] = useState({
     data: null,
@@ -19,7 +38,10 @@ function App() {
   });
   const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID);
 
-
+  /*  Load user info from API. Until a user is logged in and they have a token,
+    this should not run. It only needs to re-run when a user logs out, so
+     the value of the token is a dependency for this effect.
+  */
   useEffect(
     function loadUserInfo() {
       console.debug("App useEffect loadUserInfo", "token=", token);
@@ -56,9 +78,10 @@ function App() {
   );
 
 
+
+  /***************AUTH FUNCTIONS**********************/
   /** Handles site-wide logout. */
   function logout() {
-    // setApplicationIds(new Set([]));
     setCurrentUser({
       infoLoaded: true,
       data: null
@@ -70,7 +93,6 @@ function App() {
    *
    * Automatically logs them in (set token) upon signup.
    *
-   * Make sure you await this function to see if any error happens.
    */
   async function signup(signupData) {
     let token = await ShareBnB.register(signupData);
@@ -79,27 +101,31 @@ function App() {
 
   /** Handles site-wide login.
    *
-   * Logs in a user
+   * Logs in a user, sets token
    *
-   * Make sure you await this function to see if any error happens.
    */
   async function login(loginData) {
-    console.log(loginData);
     let token = await ShareBnB.login(loginData);
     setToken(token);
   }
 
+
+
+  /*************PROPERTY FUNCTIONS********************** */
+
+  /* Calls api to create a property and returns property */
   async function createProperty(formData) {
     let property = await ShareBnB.createProperty(formData);
     return property;
 
   }
-
+  /* Calls api to upload and image and returns property with new image */
   async function uploadImages(formData) {
     const property = await ShareBnB.uploadImages(formData);
     return property;
   }
 
+  /* Calls api to sendMsg, and returns message */
   async function sendMsg(formData) {
     const message = await ShareBnB.sendMessage(formData);
     return message;
