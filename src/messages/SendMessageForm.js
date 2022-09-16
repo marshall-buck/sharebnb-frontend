@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 
 import Alert from "../common/Alert";
 
@@ -13,16 +13,19 @@ import {
   Button,
 } from "reactstrap";
 
-/** Form to create a Property
- * Props
- * - createProperty
- * -uploadImages
- * State
- * -formData
- *   {title, address, description ,price}
- */
+/** Form to send message
+ * Props:
+ * - sendMsg fn()
+ * - toUsername
+ *
+ * State:
+ * - saveConfirmed: boolean
+ * - formData: {toUsername, body}
+ *
+ * App -> RouteList -> SendMessageForm  -> Alert */
 
 function SendMessageForm({ sendMsg, toUsername }) {
+
   const [saveConfirmed, setSaveConfirmed] = useState(false);
   const [formData, setFormData] = useState({
     toUsername: toUsername || "",
@@ -40,7 +43,6 @@ function SendMessageForm({ sendMsg, toUsername }) {
 
   /** Handle form submit:
    *
-   * Calls login func prop and, if not successful, sets errors.
    */
   async function handleSubmit(evt) {
     evt.preventDefault();
