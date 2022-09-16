@@ -5,15 +5,13 @@ import UserContext from "../auth/UserContext";
 
 /**UserDetails: id, description and list of all jobs of one Property
  *
- * State:
+ * Context:
  * - user = {username, firstName, lastName, phone, email}
  *
- * Effect:
- * - call getProperty() on mount and when id changes
  *
- * UserDetails -> JobCardList
+ * App -> RouteList -> UserDetails
  */
-function UserDetails({ book, sendMsg }) {
+function UserDetails() {
   const { currentUser } = useContext(UserContext);
 
   return (
