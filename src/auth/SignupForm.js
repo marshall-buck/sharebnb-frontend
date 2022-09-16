@@ -67,7 +67,7 @@ function SignupForm({ signup }) {
         <h2 className="mb-3 text-center">Sign Up</h2>
         <Card>
           <CardBody>
-            <Form>
+            <Form onSubmit={handleSubmit}>
 
               {/* USERNAME */}
               <FormGroup>
@@ -127,6 +127,7 @@ function SignupForm({ signup }) {
                 <Label>
                   Phone
                 </Label>
+
                 <Input
                   name="phone"
                   type="tel"
@@ -135,6 +136,7 @@ function SignupForm({ signup }) {
                   onChange={handleChange}
                   required
                 />
+                <FormText>123-456-7890</FormText>
               </FormGroup>
 
               {/* EMAIL */}
@@ -168,4 +170,3 @@ function SignupForm({ signup }) {
 }
 
 export default SignupForm;
-
