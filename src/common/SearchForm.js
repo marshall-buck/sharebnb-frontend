@@ -4,7 +4,7 @@ import { Form, Input, Button, Row, Col } from "reactstrap";
 /** Search form component
  *
  * Props:
- * - seach: fn() for seach by term on submit
+ * - search: fn() for search by term on submit
  *
  * State:
  * - term = null by default or string of search term

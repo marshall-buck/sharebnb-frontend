@@ -7,7 +7,18 @@ import UserContext from "../auth/UserContext";
 
 import MessageCard from './MessageCard';
 
+/** MessageList for current user
+ * Context:
+ * - currentUSer
+ *
+ * State:
+ * - messages: {sent:[], received:[], isLoading}
+ *
+ * App -> RouteList -> MessageList
+ */
+
 function MessageList() {
+
   const { currentUser } = useContext(UserContext);
   const [messages, setMessages] = useState({
     sent: [],
@@ -15,6 +26,8 @@ function MessageList() {
     isLoading: true
   });
 
+
+  // TODO: change name of effect
   useEffect(function fetchPropertiesList() {
     async function fetchMessages() {
       const sentRes = await ShareBnB.getMsgsSent(currentUser.username);
@@ -26,6 +39,7 @@ function MessageList() {
       });
     }
     fetchMessages();
+    // TODO: is this really needed?
   }, [currentUser]);
 
   if (messages.isLoading) return <i>Loading...</i>;
@@ -38,7 +52,7 @@ function MessageList() {
         id="noanim-tab-example"
         className="mb-3"
       >
-
+        {/* RECEIVED MESSAGES */}
         <Tab eventKey="inbox" title="Messages Received">
           {messages.received.length
             ? (
@@ -56,6 +70,8 @@ function MessageList() {
               <p className="lead">Sorry, you dont have any messages!</p>
             )}
         </Tab>
+
+        {/* SENT MESSAGES */}
         <Tab eventKey="outbox" title="Messages Sent">
           {messages.sent.length
             ? (
@@ -70,7 +86,7 @@ function MessageList() {
                 ))}
               </ListGroup>
             ) : (
-              <p className="lead">Sorry, you dont have any messages!</p>
+              <p className="lead">Sorry, you don't have any messages!</p>
             )}
         </Tab>
 

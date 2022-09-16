@@ -1,6 +1,14 @@
 import { ListGroupItem } from "reactstrap";
 
-function MessageCard({ sent, from=null, to=null, body }) {
+/** Card for a Message
+ *
+ * Props:
+ * - {sent, from, to, body}
+ *
+ * MessageList -> MessageCard
+ */
+
+function MessageCard({ sent, from = null, to = null, body }) {
 
   return (
     <ListGroupItem>
