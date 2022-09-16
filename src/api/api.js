@@ -47,7 +47,6 @@ class ShareBnB {
   }
 
 
-
   /** Get the current user. */
 
   static async getCurrentUser(username) {
@@ -55,6 +54,17 @@ class ShareBnB {
     return res.user;
   }
 
+  /** Get all properties with option to filter by description */
+  static async getProperties(description) {
+    let res = await this.request(`properties/`, {description});
+    return res.properties;
+  }
+
+  /** Get a property by id */
+  static async getProperty(id) {
+    let res = await this.request(`properties/${id}`);
+    return res.property;
+  }
   /** Create property
    * formData- { title, address, description ,price }
    *
@@ -97,9 +107,27 @@ class ShareBnB {
    */
 
   static async uploadImages(formData) {
-    console.log(formData);
     let res = await this.upload(`properties/images`, formData);
     return res.property;
+  }
+
+  /** Send a msg */
+
+  static async sendMessage(data) {
+    let res = await this.request("messages", data, "post");
+    return res.message;
+  }
+
+  /** Get messages from*/
+  static async getMsgsSent(username) {
+    let res = await this.request(`users/${username}/from`)
+    return res.messages;
+  }
+
+  /** Get messages to */
+  static async getMsgsReceived(username) {
+    let res = await this.request(`users/${username}/to`)
+    return res.messages;
   }
 
 }

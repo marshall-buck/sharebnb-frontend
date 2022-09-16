@@ -1,14 +1,13 @@
-// import React from "react";
-// import "./LoadingSpinner.css";
+import React from "react";
 
-// /** Loading message used by components that fetch API data. */
+/** Loading message used by components that fetch API data. */
 
-// function LoadingSpinner() {
-//   return (
-//     <div className="LoadingSpinner">
-//       Loading ...
-//     </div>
-//   );
-// }
+function LoadingSpinner() {
+  return (
+    <div className="LoadingSpinner">
+      Loading ...
+    </div>
+  );
+}
 
-// export default LoadingSpinner;
+export default LoadingSpinner;

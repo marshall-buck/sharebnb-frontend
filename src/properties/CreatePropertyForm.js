@@ -1,6 +1,5 @@
 import { useState } from "react";
 
-// import UserContext from "../auth/UserContext";
 import Alert from "../common/Alert";
 import ImageUploadForm from "../common/ImageUploadForm";
 
@@ -31,7 +30,7 @@ function CreatePropertyForm({ createProperty, uploadImages }) {
     description: "",
     price: "",
   });
-  // const { currentUser } = useContext(UserContext);
+ 
   const [formErrors, setFormErrors] = useState([]);
   const [property, setProperty] = useState(null);
 

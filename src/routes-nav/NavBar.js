@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import { useContext } from "react";
-import userContext from "../auth/UserContext";
+import React, { useState, useContext } from "react";
+import UserContext from "../auth/UserContext";
 import {
   Collapse,
   Navbar,
@@ -11,14 +10,13 @@ import {
 } from 'reactstrap';
 import { NavLink } from "react-router-dom";
 import 'bootstrap/dist/js/bootstrap.bundle';
-// import "./NavBar.css";
 
 
 /** NavBar Component
  *
  * State: {boolean} collapse navbar
  *
- * Context: {user}
+ * Context: {currentUser}
  *
  * NavBar display changes depending on user logged in or not
  */
@@ -27,19 +25,23 @@ function NavBar({ logout }) {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 
-  const { currentUser } = useContext(userContext);
+  const { currentUser } = useContext(UserContext);
+  console.debug("NavBar", "currentUser=", currentUser);
 
   function showLoggedIn() {
     return (
       <>
         <NavItem>
-          <NavLink to="/companies">Companies</NavLink>
+          <NavLink to="/properties">Properties for Rent</NavLink>
         </NavItem>&nbsp;&nbsp;&nbsp;
         <NavItem>
-          <NavLink to="/jobs">Jobs</NavLink>
+          <NavLink to="/properties/add">List a Property</NavLink>
         </NavItem>&nbsp;&nbsp;&nbsp;
         <NavItem>
           <NavLink to="/profile">Profile</NavLink>
+        </NavItem>&nbsp;&nbsp;&nbsp;
+        <NavItem>
+          <NavLink to="/messages">Inbox</NavLink>
         </NavItem>&nbsp;&nbsp;&nbsp;
         <NavItem>
           <NavLink to="/logout" onClick={logout}>
@@ -66,7 +68,7 @@ function NavBar({ logout }) {
   return (
     <div>
       <Navbar className="NavBar" bg="light" expand="md" color="white">
-        <NavbarBrand href="/">Share B&B</NavbarBrand>
+        <NavbarBrand href="/">Share BnB</NavbarBrand>
         <NavbarToggler onClick={toggle} aria-controls="basic-navbar-nav" />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ms-auto">

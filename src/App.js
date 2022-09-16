@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import useLocalStorage from "./hooks/useLocalStorage";
 import NavBar from "./routes-nav/NavBar";
 import RoutesList from "./routes-nav/RoutesList";
-// import LoadingSpinner from "./common/LoadingSpinner";
+import LoadingSpinner from "./common/LoadingSpinner";
 import ShareBnB from "./api/api";
 import { BrowserRouter } from "react-router-dom";
 
@@ -36,7 +36,6 @@ function App() {
               infoLoaded: true,
               data: currentUser
             });
-            // setApplicationIds(new Set(currentUser.applications));
           } catch (err) {
             console.error("App loadUserInfo: problem loading", err);
             setCurrentUser({
@@ -53,7 +52,7 @@ function App() {
       }
       getCurrentUser();
     },
-    [token]
+    []
   );
 
 
@@ -101,26 +100,40 @@ function App() {
     return property;
   }
 
+  async function sendMsg(formData) {
+    const message = await ShareBnB.sendMessage(formData);
+    return message;
+  }
 
+  if (!currentUser.infoLoaded) return <LoadingSpinner />;
 
   return (
-    <UserContext.Provider
-      value={{
-        currentUser: currentUser.data,
-        setCurrentUser,
-
-      }}
-    >
-      <div className="App">
-
+    <div className="App"
+      style={{
+        backgroundImage: `url("background.jpg")`,
+        backgroundSize: "cover",
+        backgroundRepeat: "repeat-y",
+        height: "100vh"
+      }}>
+      <UserContext.Provider
+        value={{
+          currentUser: currentUser.data
+        }}
+      >
         <BrowserRouter>
-          <NavBar logout={logout} />
-          <RoutesList currentUser={currentUser.data} login={login}
-            signup={signup} createProperty={createProperty} uploadImages={uploadImages} />
-        </BrowserRouter>
 
-      </div>
-    </UserContext.Provider>
+          <NavBar logout={logout} />
+          <RoutesList
+            currentUser={currentUser.data}
+            login={login}
+            signup={signup}
+            createProperty={createProperty}
+            uploadImages={uploadImages}
+            sendMsg={sendMsg} />
+
+        </BrowserRouter>
+      </UserContext.Provider>
+    </div>
   );
 }
 

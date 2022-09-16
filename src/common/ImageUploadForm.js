@@ -3,6 +3,7 @@ import Alert from "./Alert";
 
 
 import { Form, FormGroup, Label, Input, FormText, Button } from "reactstrap";
+import { Navigate } from "react-router-dom";
 
 /** Form to upload images
  * Prop
@@ -31,10 +32,9 @@ function ImageUploadForm({ property, uploadImages }) {
   async function handleSubmit(evt) {
     evt.preventDefault();
     try {
-
-      const res = await uploadImages({ photos: file, id: property.id });
+      await uploadImages({ photos: file, id: property.id });
       setFile(null);
-
+      Navigate(`/properties/${property.id}`)
     } catch (err) {
       setFormErrors(err);
       return;
