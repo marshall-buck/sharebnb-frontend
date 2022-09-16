@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Form, FormGroup, Label, Input, FormText, Button, Card, CardBody, } from "reactstrap";
 // import Alert from "../common/Alert";
 // import "./SignupForm.css";
 // import { useNavigate } from "react-router-dom";
@@ -63,106 +64,108 @@ function SignupForm({ signup }) {
   return (
     <div className="SignupForm">
       <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
-        <h2 className="mb-3">Sign Up</h2>
-        <div className="card">
-          <div className="card-body">
-            <form onSubmit={handleSubmit}>
-              <div className="mb-3">
+        <h2 className="mb-3 text-center">Sign Up</h2>
+        <Card>
+          <CardBody>
+            <Form>
 
-                {/* USERNAME */}
-                <label className="form-label">Username</label>
-                <input
+              {/* USERNAME */}
+              <FormGroup>
+                <Label>
+                  Username
+                </Label>
+                <Input
                   name="username"
-                  className="form-control"
+
                   value={formData.username}
                   onChange={handleChange}
                   required
                 />
-              </div>
+              </FormGroup>
 
               {/* PASSWORD */}
-              <div className="mb-3">
-                <label className="form-label">Password</label>
-                <input
-                  type="password"
+              <FormGroup>
+                <Label>
+                  Password
+                </Label>
+                <Input
                   name="password"
-                  className="form-control"
                   value={formData.password}
                   onChange={handleChange}
                   required
                 />
+              </FormGroup>
 
-              </div>
               {/* FIRST NAME */}
-              <div className="mb-3">
-                <label className="form-label">First name</label>
-                <input
+              <FormGroup>
+                <Label>
+                  First Name
+                </Label>
+                <Input
                   name="firstName"
-                  className="form-control"
                   value={formData.firstName}
                   onChange={handleChange}
                   required
                 />
-              </div>
+              </FormGroup>
 
               {/* LAST NAME */}
-              <div className="mb-3">
-                <label className="form-label">Last name</label>
-                <input
+              <FormGroup>
+                <Label>
+                  Last Name
+                </Label>
+                <Input
                   name="lastName"
-                  className="form-control"
                   value={formData.lastName}
                   onChange={handleChange}
                   required
                 />
-              </div>
+              </FormGroup>
 
               {/* PHONE */}
-              <div className="mb-3">
-                <label className="form-label">Phone</label>
-                <input
+              <FormGroup>
+                <Label>
+                  Phone
+                </Label>
+                <Input
+                  name="phone"
                   type="tel"
                   pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                  name="phone"
-                  className="form-control"
                   value={formData.phone}
                   onChange={handleChange}
+                  required
                 />
-              </div>
+              </FormGroup>
 
               {/* EMAIL */}
-              <div className="mb-3">
-                <label className="form-label">Email</label>
-                <input
-                  type="email"
+              <FormGroup>
+                <Label>
+                  Email
+                </Label>
+                <Input
                   name="email"
-                  className="form-control"
                   value={formData.email}
                   onChange={handleChange}
                   required
                 />
-              </div>
+              </FormGroup>
+              <FormGroup className="d-grid">
 
-              {formErrors.length
-                ? <h2>Woops</h2>
-                : null
-              }
-              {/* {formErrors.length
-                ? <Alert type="danger" messages={formErrors} />
-                : null
-              } */}
+                {formErrors.length
+                  ? <h2>Woops</h2>
+                  : null
+                } <Button color="primary">Submit</Button></FormGroup>
 
-              <div className="d-grid">
-                <button className="btn btn-primary">
-                  Submit
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
+            </Form>
+          </CardBody>
+
+        </Card>
+
+
       </div>
     </div>
   );
 }
 
 export default SignupForm;
+
