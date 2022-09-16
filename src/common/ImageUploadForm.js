@@ -3,7 +3,7 @@ import Alert from "./Alert";
 
 
 import { Form, FormGroup, Label, Input, FormText, Button } from "reactstrap";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 /** Form to upload images, redirects to property details page o success
  *
@@ -21,6 +21,7 @@ import { Navigate } from "react-router-dom";
 function ImageUploadForm({ property, uploadImages }) {
   const [formErrors, setFormErrors] = useState([]);
   const [file, setFile] = useState();
+  const navigate = useNavigate();
 
   /** Update form data field */
   function handleChange(evt) {
@@ -33,10 +34,11 @@ function ImageUploadForm({ property, uploadImages }) {
   /** Handles form submit, and redirect  */
   async function handleSubmit(evt) {
     evt.preventDefault();
+    setFormErrors([]);
     try {
       await uploadImages({ photos: file, id: property.id });
       setFile(null);
-      Navigate(`/properties/${property.id}`);
+      navigate(`/properties/${property.id}`);
     } catch (err) {
       setFormErrors(err);
       return;
