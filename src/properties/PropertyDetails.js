@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import ShareBnB from "../api/api";
 import { Container, Row, Button } from "reactstrap";
 import SendMessageForm from "../messages/SendMessageForm";
+import BookingForm from "./BookingForm";
 
 
 
@@ -49,14 +50,15 @@ function PropertyDetails({ book, sendMsg }) {
       <Row style={{ margin: '20px' }}>
         <h2> {property.data.title}</h2>
 
-        <img style={{ width: '300px' }} src={property.data.images[0] ? property.data.images[0].key : "../no-photo.jpeg"} alt={property.data.title} />
+        <img style={{ width: '300px' }} src={property.data.images[0] ?
+          property.data.images[0].key :
+          "../no-photo.jpeg"} alt={property.data.title} />
         <p> {property.data.description}</p>
         <p> {property.data.address}</p>
         <p> {property.data.ownerUsername}</p>
       </Row>
 
-      <Button disabled >Book!</Button>
-
+      <BookingForm propertyId={property.data.id} />
       <SendMessageForm sendMsg={sendMsg} toUsername={property.data.ownerUsername} />
     </Container>
 

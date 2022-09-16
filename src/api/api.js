@@ -56,7 +56,7 @@ class ShareBnB {
 
   /** Get all properties with option to filter by description */
   static async getProperties(description) {
-    let res = await this.request(`properties/`, {description});
+    let res = await this.request(`properties/`, { description });
     return res.properties;
   }
 
@@ -76,6 +76,17 @@ class ShareBnB {
   static async createProperty(formData) {
     let res = await this.request("properties", formData, "post");
     return res.property;
+  }
+
+  /**books Property {startDate, endDate, propertyId}
+   *
+   * returns {property }
+   */
+  static async bookProperty({ startDate, endDate, propertyId }) {
+    const res = await this.request(`properties/${propertyId}/bookings`,
+      { startDate, endDate, propertyId }, 'post');
+    return res.property;
+
   }
 
   /**  Handles post request with content-type  "multipart/form-data" */
@@ -120,13 +131,13 @@ class ShareBnB {
 
   /** Get messages from*/
   static async getMsgsSent(username) {
-    let res = await this.request(`users/${username}/from`)
+    let res = await this.request(`users/${username}/from`);
     return res.messages;
   }
 
   /** Get messages to */
   static async getMsgsReceived(username) {
-    let res = await this.request(`users/${username}/to`)
+    let res = await this.request(`users/${username}/to`);
     return res.messages;
   }
 
