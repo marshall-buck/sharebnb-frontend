@@ -31,7 +31,7 @@ function MessageList() {
   if (messages.isLoading) return <i>Loading...</i>;
 
   return (
-    <div style={{ backgroundColor:"white", }}>
+    <div style={{ backgroundColor: "white", }}>
       <Tabs
         defaultActiveKey="inbox"
         transition={false}
@@ -40,38 +40,38 @@ function MessageList() {
       >
 
         <Tab eventKey="inbox" title="Messages Received">
-        {messages.received.length
-        ? (
-          <ListGroup>
-            {messages.received.map(m => (
-              <MessageCard
-                key={m.id}
-                from={m.from_user}
-                sent={m.sent_at}
-                body={m.body}
-              />
-            ))}
-          </ListGroup>
-        ) : (
-          <p className="lead">Sorry, you dont have any messages!</p>
-        )}
+          {messages.received.length
+            ? (
+              <ListGroup>
+                {messages.received.map(m => (
+                  <MessageCard
+                    key={m.id}
+                    from={m.from_user}
+                    sent={m.sent_at}
+                    body={m.body}
+                  />
+                ))}
+              </ListGroup>
+            ) : (
+              <p className="lead">Sorry, you dont have any messages!</p>
+            )}
         </Tab>
         <Tab eventKey="outbox" title="Messages Sent">
-        {messages.sent.length
-        ? (
-          <ListGroup>
-            {messages.sent.map(m => (
-              <MessageCard
-                key={m.id}
-                to={m.to_user}
-                sent={m.sent_at}
-                body={m.body}
-              />
-            ))}
-          </ListGroup>
-        ) : (
-          <p className="lead">Sorry, you dont have any messages!</p>
-        )}
+          {messages.sent.length
+            ? (
+              <ListGroup>
+                {messages.sent.map(m => (
+                  <MessageCard
+                    key={m.id}
+                    to={m.to_user}
+                    sent={m.sent_at}
+                    body={m.body}
+                  />
+                ))}
+              </ListGroup>
+            ) : (
+              <p className="lead">Sorry, you dont have any messages!</p>
+            )}
         </Tab>
 
       </Tabs>

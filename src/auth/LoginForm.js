@@ -15,13 +15,17 @@ import Alert from "../common/Alert";
 
 /** LoginForm component
  *
- * State: formdata
+ * State:
+ * -formData:  { name. password }
+ * -formErrors: array
  *
  * Props:
  * - login: fn()
  *
  * Login form for user login
- */
+ * redirects to properties page on success
+ *
+ * App-> NavBar -> RouteList -> Login -> Alert */
 function LoginForm({ login }) {
   const [formData, setFormData] = useState({
     username: "",
@@ -31,12 +35,15 @@ function LoginForm({ login }) {
 
   const navigate = useNavigate();
 
+
+  /** Handles input changes */
   function handleChange(evt) {
     const { name, value } = evt.target;
     setFormData(fd => ({ ...fd, [name]: value }));
     setFormErrors([]);
   }
 
+  /** Handles form submit, redirects to properties */
   async function handleSubmit(evt) {
     evt.preventDefault();
     try {
@@ -62,6 +69,8 @@ function LoginForm({ login }) {
             style={{ padding: "0.5rem" }}>
             <legend>Log In:</legend>
             <FormGroup>
+
+              {/* USERNAME */}
               <Label for="username">Username</Label>
               <Input
                 id="username"
@@ -69,6 +78,8 @@ function LoginForm({ login }) {
                 value={formData.username}
                 onChange={handleChange}
               />
+
+              {/* PASSWORD */}
               <Label for="password">Password:</Label>
               <Input
                 id="password"
