@@ -4,25 +4,23 @@ import SearchForm from "../common/SearchForm";
 import PropertyCard from "./PropertyCard";
 import ShareBnB from "../api/api";
 
-/** PropertiesList component
+/** PropertiesList component, displays all properties
  *
- * Props:
- * - properties [{property}, ...]
  *
  * State:
  * - properties [{property}, ...]
  *
- * useEffect
- * - call findAll() on mount
- *
+ * App -> RouteList -> PropertyList -> SearchForm
  */
 
 function PropertyList() {
+
   const [properties, setProperties] = useState({
     data: [],
     isLoading: true
   });
 
+  /* calls api to get all properties */
   useEffect(function fetchPropertiesList() {
     async function fetchProperties() {
       const result = await ShareBnB.getProperties();

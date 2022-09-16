@@ -12,15 +12,21 @@ import { NavLink } from "react-router-dom";
 import 'bootstrap/dist/js/bootstrap.bundle';
 
 
-/** NavBar Component
+/** NavBar Component, responsive toggle
+ * NavBar display changes depending on user logged in or not
  *
- * State: {boolean} collapse navbar
+ * Props:
+ * - logout: fn()
+ *
+ *
+ * State: -isOpen: boolean -  collapse navbar
  *
  * Context: {currentUser}
+ *  App -> NavBar
  *
- * NavBar display changes depending on user logged in or not
  */
 function NavBar({ logout }) {
+
   //navbar collapse  logic
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);

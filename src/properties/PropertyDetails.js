@@ -1,21 +1,27 @@
 import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import ShareBnB from "../api/api";
 import { Container, Row, Button } from "reactstrap";
 import SendMessageForm from "../messages/SendMessageForm";
 
 
-/**PropertyDetail: id, description and list of all jobs of one Property
+
+//TODO: booking
+/** PropertyDetails: id, description and list of all jobs of one Property
+ *
+ * Props:
+ * - book fn()
+ * - sendMsg fn()
  *
  * State:
- * - Property = {id, title, address, description, ownerUserid, images}
+ * - Property = {id, title, address, description, ownerUsername, images}
  *
- * Effect:
- * - call getProperty() on mount and when id changes
  *
- * PropertyDetail -> JobCardList
+ * App -> PropertyDetails -> SendMessageForm
  */
-function PropertyDetail({ book, sendMsg }) {
+// BUG: changed to plural
+function PropertyDetails({ book, sendMsg }) {
+
   const [property, setProperty] = useState({
     data: null,
     isLoading: true
@@ -23,6 +29,7 @@ function PropertyDetail({ book, sendMsg }) {
 
   const { id } = useParams();
 
+  /* calls api to get a property by id */
   useEffect(function fetchPropertyDetail() {
     async function fetchProperty() {
       const result = await ShareBnB.getProperty(id);
@@ -49,9 +56,9 @@ function PropertyDetail({ book, sendMsg }) {
 
       <Button disabled >Book!</Button>
 
-      <SendMessageForm sendMsg={sendMsg} toUsername={property.data.ownerUsername}/>
+      <SendMessageForm sendMsg={sendMsg} toUsername={property.data.ownerUsername} />
     </Container>
 
   );
 }
-export default PropertyDetail;
+export default PropertyDetails;
