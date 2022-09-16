@@ -36,7 +36,7 @@ function LoginForm({ login }) {
   const navigate = useNavigate();
 
 
-  /** Handles input changes */
+  /** Updates formDate state from inputs */
   function handleChange(evt) {
     const { name, value } = evt.target;
     setFormData(fd => ({ ...fd, [name]: value }));

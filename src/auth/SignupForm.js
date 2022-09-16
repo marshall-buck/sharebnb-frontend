@@ -2,15 +2,22 @@ import React, { useState } from "react";
 // import Alert from "../common/Alert";
 // import "./SignupForm.css";
 // import { useNavigate } from "react-router-dom";
+// TODO: put back alert
+// TODO: redirect on success
 
-/** Signup form.
+
+
+/** Signup form to register a user
  *
- * Shows form and manages update to state on changes.
- * On submission:
- * - calls signup function prop
+ * Props:
+ * - signup function
  *
- * Routes -> SignupForm -> Alert
- * Routed as /signup
+ * State:
+ * - formData:  {username,password,  firstName, lastName, phone, email}
+ * - formErrors: array of formErrors
+ *
+ * App-> Routes -> SignupForm -> Alert
+
  */
 
 function SignupForm({ signup }) {
@@ -47,7 +54,7 @@ function SignupForm({ signup }) {
     }
   }
 
-  /** Update form data field */
+  /** Updates formDate state from inputs */
   function handleChange(evt) {
     const { name, value } = evt.target;
     setFormData(data => ({ ...data, [name]: value }));
@@ -61,6 +68,8 @@ function SignupForm({ signup }) {
           <div className="card-body">
             <form onSubmit={handleSubmit}>
               <div className="mb-3">
+
+                {/* USERNAME */}
                 <label className="form-label">Username</label>
                 <input
                   name="username"
@@ -70,6 +79,8 @@ function SignupForm({ signup }) {
                   required
                 />
               </div>
+
+              {/* PASSWORD */}
               <div className="mb-3">
                 <label className="form-label">Password</label>
                 <input
@@ -80,8 +91,9 @@ function SignupForm({ signup }) {
                   onChange={handleChange}
                   required
                 />
-              </div>
 
+              </div>
+              {/* FIRST NAME */}
               <div className="mb-3">
                 <label className="form-label">First name</label>
                 <input
@@ -92,6 +104,8 @@ function SignupForm({ signup }) {
                   required
                 />
               </div>
+
+              {/* LAST NAME */}
               <div className="mb-3">
                 <label className="form-label">Last name</label>
                 <input
@@ -102,6 +116,8 @@ function SignupForm({ signup }) {
                   required
                 />
               </div>
+
+              {/* PHONE */}
               <div className="mb-3">
                 <label className="form-label">Phone</label>
                 <input
@@ -113,6 +129,8 @@ function SignupForm({ signup }) {
                   onChange={handleChange}
                 />
               </div>
+
+              {/* EMAIL */}
               <div className="mb-3">
                 <label className="form-label">Email</label>
                 <input
