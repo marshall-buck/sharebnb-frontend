@@ -49,7 +49,9 @@ function LoginForm({ login }) {
     try {
       await login(formData);
       setFormData("");
+      // TODO: redirect
       navigate("/properties");
+
     }
     catch (err) {
       setFormErrors(err);

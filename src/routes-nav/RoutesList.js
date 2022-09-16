@@ -40,7 +40,7 @@ function RoutesList({
         }
         {currentUser &&
           <>
-            <Route path="/properties/" element={<PropertyList />} />
+            <Route path="/properties" element={<PropertyList />} />
             <Route path="/properties/add" element={<CreatePropertyForm
               createProperty={createProperty}
               uploadImages={uploadImages} />}

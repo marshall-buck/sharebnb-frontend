@@ -17,10 +17,10 @@ function Homepage() {
     <div
       style={{
         textAlign: 'center',
-        backgroundColor: 'rgba(0,0,0,.1)',
-        color: 'rgba(0,0,0,.6)',
-        width: '100vw',
-        height: '100vh',
+        // backgroundColor: 'rgba(0,0,0,.1)',
+        // color: 'rgba(0,0,0,.6)',
+        // width: '100vw',
+        // height: '100vh',
       }}>
       <h1>Share B&B</h1>
       <h3>Search for homes and apartments with an outdoor space to rent!</h3>

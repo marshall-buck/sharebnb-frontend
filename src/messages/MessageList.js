@@ -27,9 +27,8 @@ function MessageList() {
   });
 
 
-  // TODO: change name of effect
   /* calls api to get messages sent and received */
-  useEffect(function fetchPropertiesList() {
+  useEffect(function fetchMessagesList() {
     async function fetchMessages() {
       const sentRes = await ShareBnB.getMsgsSent(currentUser.username);
       const receivedRes = await ShareBnB.getMsgsReceived(currentUser.username);
@@ -40,7 +39,7 @@ function MessageList() {
       });
     }
     fetchMessages();
-    // TODO: is this really needed?
+
   }, [currentUser]);
 
   if (messages.isLoading) return <i>Loading...</i>;

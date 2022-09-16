@@ -19,7 +19,7 @@ import SendMessageForm from "../messages/SendMessageForm";
  *
  * App -> PropertyDetails -> SendMessageForm
  */
-// BUG: changed to plural
+
 function PropertyDetails({ book, sendMsg }) {
 
   const [property, setProperty] = useState({
@@ -48,7 +48,8 @@ function PropertyDetails({ book, sendMsg }) {
     <Container>
       <Row style={{ margin: '20px' }}>
         <h2> {property.data.title}</h2>
-        <img src={property.data.images[0].key} alt={property.data.title} />
+
+        <img style={{ width: '300px' }} src={property.data.images[0] ? property.data.images[0].key : "../no-photo.jpeg"} alt={property.data.title} />
         <p> {property.data.description}</p>
         <p> {property.data.address}</p>
         <p> {property.data.ownerUsername}</p>

@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { Form, FormGroup, Label, Input, FormText, Button, Card, CardBody, } from "reactstrap";
-// import Alert from "../common/Alert";
-// import "./SignupForm.css";
-// import { useNavigate } from "react-router-dom";
-// TODO: put back alert
+import Alert from "../common/Alert";
+
+import { useNavigate } from "react-router-dom";
 
 
 
 
-/** Signup form to register a user
+
+/** Signup form to register a user,
+ *  on success redirects to properties page
  *
  * Props:
  * - signup function
@@ -22,7 +23,7 @@ import { Form, FormGroup, Label, Input, FormText, Button, Card, CardBody, } from
  */
 
 function SignupForm({ signup }) {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -49,6 +50,8 @@ function SignupForm({ signup }) {
     console.log(evt.target);
     try {
       await signup(formData);
+
+      navigate("/properties");
     } catch (err) {
       setFormErrors(err);
     }
@@ -153,9 +156,9 @@ function SignupForm({ signup }) {
               <FormGroup className="d-grid">
 
                 {formErrors.length
-                  ? <h2>Woops</h2>
-                  : null
-                } <Button color="primary">Submit</Button></FormGroup>
+                  ? <Alert type="danger" messages={formErrors} />
+                  : null}
+                <Button color="primary">Submit</Button></FormGroup>
 
             </Form>
           </CardBody>
