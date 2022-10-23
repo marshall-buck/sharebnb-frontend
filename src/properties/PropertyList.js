@@ -61,7 +61,7 @@ function PropertyList() {
           ?
           properties.data.map(p => (
             <Col
-              className=""
+
               key={p.id}>
               < PropertyCard property={p} />
             </Col>

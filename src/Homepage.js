@@ -2,6 +2,7 @@ import UserContext from "./auth/UserContext";
 import { useContext } from "react";
 import { Button } from "reactstrap";
 import { Link } from "react-router-dom";
+import PropertyList from "./properties/PropertyList";
 
 /** Home  page for app
  *
@@ -38,6 +39,7 @@ function Homepage() {
           </Link>
         </>
       }
+      <PropertyList />
 
     </div >
   );
