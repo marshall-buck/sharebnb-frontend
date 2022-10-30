@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Card, CardBody, CardTitle, CardSubtitle } from "reactstrap";
 import UserContext from "../auth/UserContext";
 import { useContext, useState } from "react";
@@ -9,7 +9,7 @@ import "./PropertyCard.css";
  * renders details about a property, link to property details page
  *
  * Props:
- * - property: {id, title, address, description, ownerUsername, key}
+ * - property: {id, title, address, description, ownercurretnUsername, key}
  *
  * State:
  * - none
@@ -19,25 +19,34 @@ import "./PropertyCard.css";
 
 function PropertyCard({ property }) {
 
+
+
   const navigate = useNavigate();
   const [showAlert, setShowAlert] = useState(false);
   const { id, title, address, key } = property;
-  const { user } = useContext(UserContext);
+  const { currentUser } = useContext(UserContext);
   let imgSrc = key ? key : "../no-photo.jpeg";
 
+
+  /** Click handler for property cards */
   function cardClicked() {
-    console.log(id, user);
-    if (!user) {
+
+    if (!currentUser) {
+
       setShowAlert(!showAlert);
     } else {
+
       navigate(`/properties/${id}`);
     }
     // to={`/properties/${id}
   }
-
+  // to={`/properties/${id}`}
   return (
-    <NavLink onClick={cardClicked}  >
+
+    <div onClick={cardClicked}
+      style={{ cursor: "pointer" }}>
       <Card
+
         className="Card mb-4"
         style={{
           width: '18rem',
@@ -52,12 +61,15 @@ function PropertyCard({ property }) {
           backgroundSize: '18rem', backgroundRepeat: 'no-repeat'
         }}></div>
         <CardBody>
-          {showAlert && <Alert messages={['You must be logged in to view', 'Click again to dismiss']} />}
+          {showAlert && <Alert messages={["You must be logged in to view property details"]} />}
           <CardTitle tag="h5">{title}</CardTitle>
           <CardSubtitle style={{ color: 'grey' }}>{address}</CardSubtitle>
         </CardBody>
+
       </Card>
-    </NavLink>
+    </div>
+
+
   );
 }
 

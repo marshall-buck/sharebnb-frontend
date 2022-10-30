@@ -62,7 +62,7 @@ function PropertyList() {
           properties.data.map(p => (
             <Col
 
-              key={p.id}>
+              key={`${p.id}:${p.key}`}>
               < PropertyCard property={p} />
             </Col>
           ))
