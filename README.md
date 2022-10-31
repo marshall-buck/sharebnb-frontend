@@ -1,6 +1,6 @@
 # sharebnb
 
-### React front end  that lets users share spaces, conne ct
+### React front end  that lets users share spaces.
 
 ### Built during a 3-day long sprint with freedom to choose tech stack
 
