@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Form, Input, Button, Row, Col } from "reactstrap";
+import { Form, Input, Button, Row, Col, InputGroup, InputGroupText } from "reactstrap";
 
 /** Search form component
  *
@@ -31,20 +31,18 @@ function SearchForm({ search }) {
   return (
     <Form
       onSubmit={handleSubmit}>
-      <Row
-        className=""
-        style={{ margin: "2rem" }}>
-        <Col>
+      <Row>
+        <InputGroup className="mb-4">
+
           <Input
             value={searchTerm}
             name="searchTerm"
             onChange={handleChange}
             placeholder="Enter search term..."
           />
-        </Col>
-        <Col>
           <Button>Search!</Button>
-        </Col>
+
+        </InputGroup>
       </Row>
     </Form>
   );

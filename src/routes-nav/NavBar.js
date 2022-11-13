@@ -6,9 +6,9 @@ import {
   NavbarToggler,
   NavbarBrand,
   Nav,
-  NavItem, Badge
+  NavItem, Badge, Button
 } from 'reactstrap';
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import 'bootstrap/dist/js/bootstrap.bundle';
 import './NavBar.css';
 
@@ -72,12 +72,19 @@ function NavBar({ logout }) {
   function showLoggedOut() {
     return (
       <>
-        <NavItem>
+        {/* <NavItem>
           <NavLink to="/login">Log In</NavLink>
         </NavItem>&nbsp;&nbsp;&nbsp;
         <NavItem>
           <NavLink to="/signup">Sign up</NavLink>
-        </NavItem>
+        </NavItem> */}
+        <Link to="/login">
+          <Button color="primary">Log in</Button>
+        </Link>
+        &nbsp; &nbsp;
+        <Link to="/signup">
+          <Button color="primary">Sign up</Button>
+        </Link>
       </>
     );
   }

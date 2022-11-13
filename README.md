@@ -41,7 +41,7 @@
 - [ ] allow for live notifications when property is booked
 - [ ] add user dashboard
 - [ ] make badge counts dynamic
-- [ ] add loading spinner
-- [ ] fix search bar style
+- [ ] add loading spinner, for image uploads
+
 - [ ] get rid of inline styles
 - [ ] convert to typescript

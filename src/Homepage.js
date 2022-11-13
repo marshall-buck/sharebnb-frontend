@@ -1,6 +1,6 @@
 import UserContext from "./auth/UserContext";
 import { useContext } from "react";
-import { Button } from "reactstrap";
+import { Button, Container, Row } from "reactstrap";
 import { Link } from "react-router-dom";
 import PropertyList from "./properties/PropertyList";
 
@@ -9,39 +9,39 @@ import PropertyList from "./properties/PropertyList";
  *Context: currentUser*
  *
  * App -> RouteList -> Homepage
-*/
+ */
 function Homepage() {
-
-  const { currentUser } = useContext(UserContext);
+  // const { currentUser } = useContext(UserContext);
 
   return (
-    <div
-      style={{
-        textAlign: 'center',
-        // backgroundColor: 'rgba(0,0,0,.1)',
-        // color: 'rgba(0,0,0,.6)',
-        // width: '100vw',
-        // height: '100vh',
-      }}>
-      <h1>Share B&B</h1>
-      <h3>Search for homes and apartments with an outdoor space to rent!</h3>
-      {currentUser
-        ?
+    <Container >
+
+      {" "}
+      <Row className="text-center">
+        <h1>Share B&B</h1>
+      </Row>
+      <Row className="text-center">
+        <h3>
+          Search for homes and apartments with an outdoor space to rent!
+        </h3>
+      </Row>
+
+
+      {/* {currentUser ? (
         <p> Welcome back, {currentUser.username} </p>
-        :
+      ) : (
         <>
-          <Link to="/login" >
+          <Link to="/login">
             <Button color="primary">Log in</Button>
           </Link>
           &nbsp; &nbsp;
-          <Link to="/signup" >
+          <Link to="/signup">
             <Button color="primary">Sign up</Button>
           </Link>
         </>
-      }
+      )} */}
       <PropertyList />
-
-    </div >
+    </Container>
   );
 }
 
