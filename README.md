@@ -42,6 +42,7 @@
 - [ ] add user dashboard
 - [ ] make badge counts dynamic
 - [ ] add loading spinner, for image uploads
+- [ ] fix styling issues for search and properties container
 
 - [ ] get rid of inline styles
 - [ ] convert to typescript

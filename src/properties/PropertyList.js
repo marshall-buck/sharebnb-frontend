@@ -14,10 +14,9 @@ import ShareBnB from "../api/api";
  */
 
 function PropertyList() {
-
   const [properties, setProperties] = useState({
     data: [],
-    isLoading: true
+    isLoading: true,
   });
 
   /* calls api to get all properties */
@@ -26,7 +25,7 @@ function PropertyList() {
       const result = await ShareBnB.getProperties();
       setProperties({
         data: result,
-        isLoading: false
+        isLoading: false,
       });
     }
     fetchProperties();
@@ -37,7 +36,7 @@ function PropertyList() {
     const result = await ShareBnB.getProperties(description);
     setProperties({
       data: result,
-      isLoading: false
+      isLoading: false,
     });
   }
 
@@ -48,27 +47,25 @@ function PropertyList() {
       <Row>
         <Col
           className=""
-          md={{
-            offset: 3,
-            size: 8
-          }}
-          sm="12">
+          // md={{
+          //   // offset: 3,
+          //   size: 8,
+          // }}
+          // sm="12"
+        >
           <SearchForm search={search} />
         </Col>
       </Row>
-      <Row xs='1' sm='1' md='2' lg='3' xxl='4'>
-        {properties.data.length > 0
-          ?
-          properties.data.map(p => (
-            <Col
-
-              key={`${p.id}:${p.key}`}>
-              < PropertyCard property={p} />
+      <Row xs="1" sm="1" md="2" lg="3" xxl="4">
+        {properties.data.length > 0 ? (
+          properties.data.map((p) => (
+            <Col key={`${p.id}:${p.key}`}>
+              <PropertyCard property={p} />
             </Col>
           ))
-          :
+        ) : (
           <p>No properties found!</p>
-        }
+        )}
       </Row>
     </Container>
   );
