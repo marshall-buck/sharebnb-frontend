@@ -2,7 +2,6 @@ import axios from "axios";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
 
-
 /** API Class.
  *
  * Static class tying together methods used to get/send to to the API.
@@ -47,7 +46,6 @@ class ShareBnB {
     return res.token;
   }
 
-
   /** Get the current user. */
 
   static async getCurrentUser(username) {
@@ -57,7 +55,7 @@ class ShareBnB {
 
   /** Get all properties with option to filter by description */
   static async getProperties(description) {
-    let res = await this.request(`properties/`, { description });
+    let res = await this.request(`properties`, { description });
     return res.properties;
   }
 
@@ -84,10 +82,12 @@ class ShareBnB {
    * returns {property }
    */
   static async bookProperty({ startDate, endDate, propertyId }) {
-    const res = await this.request(`properties/${propertyId}/bookings`,
-      { startDate, endDate, propertyId }, 'post');
+    const res = await this.request(
+      `properties/${propertyId}/bookings`,
+      { startDate, endDate, propertyId },
+      "post"
+    );
     return res.property;
-
   }
 
   /**  Handles post request with content-type  "multipart/form-data" */
@@ -97,7 +97,7 @@ class ShareBnB {
     const url = `${BASE_URL}/${endpoint}`;
     const headers = {
       Authorization: `Bearer ${ShareBnB.token}`,
-      "Content-Type": "multipart/form-data"
+      "Content-Type": "multipart/form-data",
     };
 
     // const params = method === "get" ? data : {};
@@ -141,7 +141,6 @@ class ShareBnB {
     let res = await this.request(`users/${username}/to`);
     return res.messages;
   }
-
 }
 
 export default ShareBnB;
