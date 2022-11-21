@@ -34,7 +34,7 @@ export const TOKEN_STORAGE_ID = "sharebnb-token";
 function App() {
   const [currentUser, setCurrentUser] = useState({
     data: null,
-    infoLoaded: false
+    infoLoaded: false,
   });
   const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID);
 
@@ -56,19 +56,19 @@ function App() {
 
             setCurrentUser({
               infoLoaded: true,
-              data: currentUser
+              data: currentUser,
             });
           } catch (err) {
             console.error("App loadUserInfo: problem loading", err);
             setCurrentUser({
               infoLoaded: true,
-              data: null
+              data: null,
             });
           }
         } else {
           setCurrentUser({
             infoLoaded: true,
-            data: null
+            data: null,
           });
         }
       }
@@ -77,14 +77,12 @@ function App() {
     [token]
   );
 
-
-
   /***************AUTH FUNCTIONS**********************/
   /** Handles site-wide logout. */
   function logout() {
     setCurrentUser({
       infoLoaded: true,
-      data: null
+      data: null,
     });
     setToken(null);
   }
@@ -109,15 +107,12 @@ function App() {
     setToken(token);
   }
 
-
-
   /*************PROPERTY FUNCTIONS********************** */
 
   /* Calls api to create a property and returns property */
   async function createProperty(formData) {
     let property = await ShareBnB.createProperty(formData);
     return property;
-
   }
   /* Calls api to upload and image and returns property with new image */
   async function uploadImages(formData) {
@@ -134,17 +129,13 @@ function App() {
   if (!currentUser.infoLoaded) return <LoadingSpinner />;
 
   return (
-    <div className="App"
-
-    >
+    <div className="min-vh-100">
       <UserContext.Provider
         value={{
           currentUser: currentUser.data,
-
         }}
       >
         <BrowserRouter>
-
           <NavBar logout={logout} />
           <RoutesList
             currentUser={currentUser.data}
@@ -152,8 +143,8 @@ function App() {
             signup={signup}
             createProperty={createProperty}
             uploadImages={uploadImages}
-            sendMsg={sendMsg} />
-
+            sendMsg={sendMsg}
+          />
         </BrowserRouter>
       </UserContext.Provider>
     </div>

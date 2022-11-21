@@ -1,3 +1,7 @@
-.Card a {
-    color: black;
+.Card {
+  width: 18rem;
+  height: 26rem;
+  border: 0;
+  background-color: rgba(0,0,0,.1);
+  color: "black",
   }

@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -9,7 +8,7 @@ import {
   FormGroup,
   Label,
   Input,
-  Button
+  Button,
 } from "reactstrap";
 import Alert from "../common/Alert";
 
@@ -29,17 +28,16 @@ import Alert from "../common/Alert";
 function LoginForm({ login }) {
   const [formData, setFormData] = useState({
     username: "",
-    password: ""
+    password: "",
   });
   const [formErrors, setFormErrors] = useState([]);
 
   const navigate = useNavigate();
 
-
   /** Updates formDate state from inputs */
   function handleChange(evt) {
     const { name, value } = evt.target;
-    setFormData(fd => ({ ...fd, [name]: value }));
+    setFormData((fd) => ({ ...fd, [name]: value }));
     setFormErrors([]);
   }
 
@@ -51,27 +49,22 @@ function LoginForm({ login }) {
       setFormData("");
       // TODO: redirect
       navigate("/properties");
-
-    }
-    catch (err) {
+    } catch (err) {
       setFormErrors(err);
       return;
     }
   }
 
   return (
-    <Container >
-      <Row>
+    <Container className="position-absolute top-50 start-50 translate-middle">
+      <Row className="px-4 md-px-0">
         <Col
           className="bg-white bg-opacity-50 border rounded shadow-sm"
           md={{ offset: 3, size: 6 }}
-          sm="12">
-          <Form
-            onSubmit={handleSubmit}
-            style={{ padding: "0.5rem" }}>
+        >
+          <Form onSubmit={handleSubmit} style={{ padding: "0.5rem" }}>
             <legend>Log In:</legend>
             <FormGroup>
-
               {/* USERNAME */}
               <Label for="username">Username</Label>
               <Input
@@ -91,10 +84,12 @@ function LoginForm({ login }) {
                 type="password"
               />
             </FormGroup>
-            {formErrors.length
-              ? <Alert type="danger" messages={formErrors} />
-              : null}
-            <Button className="mb-2" color="primary">Submit</Button>
+            {formErrors.length ? (
+              <Alert type="danger" messages={formErrors} />
+            ) : null}
+            <Button className="mb-2" color="primary">
+              Submit
+            </Button>
           </Form>
         </Col>
       </Row>

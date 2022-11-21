@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Container, Row, Col } from "reactstrap";
+import { Container, Row, Col, CardGroup } from "reactstrap";
 import SearchForm from "../common/SearchForm";
 import PropertyCard from "./PropertyCard";
 import ShareBnB from "../api/api";
@@ -45,28 +45,19 @@ function PropertyList() {
   return (
     <Container>
       <Row>
-        <Col
-          className=""
-          // md={{
-          //   // offset: 3,
-          //   size: 8,
-          // }}
-          // sm="12"
-        >
+        <Col>
           <SearchForm search={search} />
         </Col>
       </Row>
-      <Row xs="1" sm="1" md="2" lg="3" xxl="4">
+      <CardGroup className="justify-content-between">
         {properties.data.length > 0 ? (
           properties.data.map((p) => (
-            <Col key={`${p.id}:${p.key}`}>
-              <PropertyCard property={p} />
-            </Col>
+            <PropertyCard key={`${p.id}:${p.key}`} property={p} />
           ))
         ) : (
           <p>No properties found!</p>
         )}
-      </Row>
+      </CardGroup>
     </Container>
   );
 }

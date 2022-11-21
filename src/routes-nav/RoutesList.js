@@ -1,4 +1,3 @@
-
 import { Routes, Route, Navigate } from "react-router-dom";
 import SignupForm from "../auth/SignupForm";
 import LoginForm from "../auth/LoginForm";
@@ -26,36 +25,48 @@ import MessageList from "../messages/MessageList";
  */
 
 function RoutesList({
-  currentUser, login, signup, createProperty, uploadImages, sendMsg
+  currentUser,
+  login,
+  signup,
+  createProperty,
+  uploadImages,
+  sendMsg,
 }) {
   return (
-    <div className="pt-5">
-      <Routes>
-        <Route path="/" element={<Homepage />} />
-        {!currentUser &&
-          <>
-            <Route path="/signup" element={<SignupForm signup={signup} />} />
-            <Route path="/login" element={<LoginForm login={login} />} />
-          </>
-        }
-        {currentUser &&
-          <>
-            <Route path="/properties" element={<PropertyList />} />
-            <Route path="/properties/add" element={<CreatePropertyForm
-              createProperty={createProperty}
-              uploadImages={uploadImages} />}
-            />
-            <Route path="/properties/:id" element={<PropertyDetails sendMsg={sendMsg} />} />
-            <Route path="/profile" element={<UserDetails />} />
-            <Route path="/messages/" element={<MessageList />} />
-            <Route path="/messages/send" element={<SendMessageForm
-              sendMsg={sendMsg} />} />
-
-          </>
-        }
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
-    </div>
+    <Routes>
+      <Route path="/" element={<Homepage />} />
+      {!currentUser && (
+        <>
+          <Route path="/signup" element={<SignupForm signup={signup} />} />
+          <Route path="/login" element={<LoginForm login={login} />} />
+        </>
+      )}
+      {currentUser && (
+        <>
+          <Route path="/properties" element={<PropertyList />} />
+          <Route
+            path="/properties/add"
+            element={
+              <CreatePropertyForm
+                createProperty={createProperty}
+                uploadImages={uploadImages}
+              />
+            }
+          />
+          <Route
+            path="/properties/:id"
+            element={<PropertyDetails sendMsg={sendMsg} />}
+          />
+          <Route path="/profile" element={<UserDetails />} />
+          <Route path="/messages/" element={<MessageList />} />
+          <Route
+            path="/messages/send"
+            element={<SendMessageForm sendMsg={sendMsg} />}
+          />
+        </>
+      )}
+      <Route path="*" element={<Navigate to="/" />} />
+    </Routes>
   );
 }
 
